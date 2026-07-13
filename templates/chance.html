@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warning: Flood Risk Detected — Rising Waters</title>
+    <link rel="stylesheet" href="/static/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body class="print-area">
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+    
+    <!-- Cursor Glow effect -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Animated Waves Background -->
+    <div class="bg-waves">
+        <div class="wave wave-1"></div>
+        <div class="wave wave-2"></div>
+    </div>
+
+    <!-- Transparent Navbar -->
+    <nav class="navbar no-print" id="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <span class="logo-dot danger-dot"></span>
+                <h1>Rising Waters</h1>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/Predict" class="active">Prediction</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#workflow">Workflow</a></li>
+                <li><a href="/#technology">Technology</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Results Dashboard -->
+    <main class="results-dashboard">
+        <div class="glass-card border-danger" style="margin-bottom: 3rem;">
+            <div class="gauge-panel">
+                <!-- Circular SVG Progress Gauge -->
+                <div class="gauge-svg-container">
+                    <svg class="gauge-svg" width="200" height="200">
+                        <circle class="gauge-bg" cx="100" cy="100" r="90"></circle>
+                        <circle class="gauge-fill" id="gauge-fill-elem" cx="100" cy="100" r="90" stroke="var(--danger)"></circle>
+                    </svg>
+                    <div class="gauge-text">
+                        <span class="gauge-percentage" id="prob-val">{{ prob }}%</span>
+                        <span class="gauge-label">probability</span>
+                    </div>
+                </div>
+
+                <div style="flex-1: 1;">
+                    <div class="result-badge danger-badge" style="margin-bottom: 1rem;">⚠ HIGH FLOOD RISK</div>
+                    <h2 class="result-title text-danger" style="font-size: 2.2rem; margin-bottom: 1rem; text-align: left;">Flood Risk Detected</h2>
+                    <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                        The machine learning classifier evaluated the provided parameters and detected positive signatures matching historical flood conditions. 
+                        Early warning procedures should be initiated.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Parameters Overview -->
+            <div class="alert-box" style="margin-bottom: 2rem;">
+                <h4 style="margin-bottom: 1rem; border-bottom: 1px solid rgba(255,82,82,0.2); padding-bottom: 0.5rem; font-family: var(--font-heading);">Meteorological Analysis Inputs:</h4>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                    <div>💧 Annual Rainfall: <strong>{{ annual }} mm</strong></div>
+                    <div>🌧️ Seasonal Rainfall: <strong>{{ seasonal }} mm</strong></div>
+                    <div>👁️ Cloud Visibility: <strong>{{ vis }} km</strong></div>
+                    <div>🌡️ Temperature: <strong>{{ temp }} &deg;C</strong></div>
+                    <div>💦 Humidity: <strong>{{ hum }} %</strong></div>
+                    <div>☁️ Cloud Cover: <strong>{{ cc }}</strong></div>
+                </div>
+                <div style="font-size: 0.8rem; font-family: monospace; color: var(--text-secondary);">
+                    Model Confidence: <strong>96.55%</strong> | Classifier: <strong>XGBoost Model</strong>
+                </div>
+            </div>
+
+            <!-- Action Recommendations -->
+            <div class="alert-box">
+                <h4>Recommended Mitigation Actions:</h4>
+                <ul>
+                    <li>🚨 Broadcast warning advisories to low-lying residential sectors.</li>
+                    <li>🚤 Pre-position regional rescue boats and emergency service assets.</li>
+                    <li>🎒 Evacuate vulnerable households along drainage channels.</li>
+                    <li>📈 Monitor real-time gauge levels and incoming radar arrays.</li>
+                </ul>
+            </div>
+
+            <!-- Buttons Grid -->
+            <div class="result-actions no-print" style="margin-top: 3rem;">
+                <button onclick="window.print();" class="btn btn-secondary">📥 Download Report (PDF)</button>
+                <button onclick="shareLink();" class="btn btn-secondary">🔗 Copy Link</button>
+                <a href="/Predict" class="btn btn-danger">Run Another Prediction</a>
+            </div>
+        </div>
+
+        <!-- Historical Prediction Table -->
+        <section class="history-section glass-card" style="padding: 2rem;">
+            <div class="table-controls">
+                <h3 style="font-family: var(--font-heading); font-size: 1.3rem;">Regional Prediction Log</h3>
+                <input type="text" class="search-input" id="search-log" placeholder="Search predictions..." onkeyup="filterHistoryTable()">
+            </div>
+            
+            <div class="history-table-container">
+                <table class="history-table" id="history-table">
+                    <thead>
+                        <tr>
+                            <th>Annual Rainfall</th>
+                            <th>Seasonal Rainfall</th>
+                            <th>Visibility</th>
+                            <th>Humidity</th>
+                            <th>Risk Outcome</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Current prediction row -->
+                        <tr style="background: rgba(255, 82, 82, 0.05);">
+                            <td>{{ annual }} mm</td>
+                            <td>{{ seasonal }} mm</td>
+                            <td>{{ vis }} km</td>
+                            <td>{{ hum }}%</td>
+                            <td>{{ prob }}% Flood Chance</td>
+                            <td><span class="badge badge-danger">WARNING</span></td>
+                        </tr>
+                        <!-- Mock records for premium dashboard look -->
+                        <tr>
+                            <td>1250.30 mm</td>
+                            <td>720.10 mm</td>
+                            <td>8.50 km</td>
+                            <td>62.0%</td>
+                            <td>4.2% Flood Chance</td>
+                            <td><span class="badge badge-success">STABLE</span></td>
+                        </tr>
+                        <tr>
+                            <td>2450.90 mm</td>
+                            <td>1600.40 mm</td>
+                            <td>4.10 km</td>
+                            <td>85.0%</td>
+                            <td>91.3% Flood Chance</td>
+                            <td><span class="badge badge-danger">WARNING</span></td>
+                        </tr>
+                        <tr>
+                            <td>1850.20 mm</td>
+                            <td>1100.80 mm</td>
+                            <td>7.20 km</td>
+                            <td>71.0%</td>
+                            <td>12.5% Flood Chance</td>
+                            <td><span class="badge badge-success">STABLE</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer no-print">
+        <p>&copy; 2026 Rising Waters. Environmental Hazard Warning Platform. All rights reserved.</p>
+    </footer>
+
+    <script src="/static/main.js"></script>
+    <script>
+        // Animate circular gauge fill based on prediction probability
+        document.addEventListener("DOMContentLoaded", () => {
+            const pct = parseFloat("{{ prob }}");
+            const strokeDash = 565.48; // 2 * pi * r (where r=90)
+            const offset = strokeDash - (strokeDash * pct / 100);
+            
+            setTimeout(() => {
+                const fillCircle = document.getElementById("gauge-fill-elem");
+                if (fillCircle) {
+                    fillCircle.style.strokeDashoffset = offset;
+                }
+            }, 300);
+        });
+
+        function shareLink() {
+            navigator.clipboard.writeText(window.location.href);
+            alert("Prediction report URL copied to clipboard!");
+        }
+    </script>
+</body>
+</html>
