@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rising Waters — ML Flood Prediction System</title>
+    <link rel="stylesheet" href="/static/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+    
+    <!-- Cursor Glow effect -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Animated Waves Background -->
+    <div class="bg-waves">
+        <div class="wave wave-1"></div>
+        <div class="wave wave-2"></div>
+    </div>
+
+    <!-- Ambience Controls -->
+    <button class="rain-ambience-btn" id="rain-btn">🔊 Play Rain Ambience</button>
+    <audio id="rain-audio" loop src="https://assets.mixkit.co/active_storage/sfx/2433/2433-84.wav"></audio>
+
+    <!-- Transparent Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <span class="logo-dot"></span>
+                <h1>Rising Waters</h1>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="/Predict">Prediction</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#analysis">Analysis</a></li>
+                <li><a href="#workflow">Workflow</a></li>
+                <li><a href="#technology">Technology</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <span class="hero-tag">AI Flood Prediction System</span>
+            <h2 class="hero-title">Predict Flood Risks Before They Become Disasters</h2>
+            <p class="hero-subtitle">
+                Aqua Intelligence is a government-grade weather monitoring platform that leverages historical meteorological datasets 
+                and gradient-boosted trees to predict extreme environmental hazards.
+            </p>
+            <div class="hero-buttons">
+                <a href="/Predict" class="btn btn-primary">Predict Flood</a>
+                <a href="#about" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+        
+        <div class="hero-illustration">
+            <div class="radar-sweep"></div>
+            <div class="radar-circle"></div>
+            <div class="radar-circle"></div>
+            <div class="radar-circle"></div>
+            <div class="radar-center"></div>
+        </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stat-box">
+            <span class="stat-num">96.55%</span>
+            <span class="stat-lbl">Model Accuracy</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-num">4</span>
+            <span class="stat-lbl">ML Models Compared</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-num">5+</span>
+            <span class="stat-lbl">Weather Parameters</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-num">Instant</span>
+            <span class="stat-lbl">Prediction Time</span>
+        </div>
+    </section>
+
+    <!-- Data Exploration & Analysis -->
+    <section class="workflow-section" id="analysis">
+        <div class="section-header">
+            <h2>Data Exploration & Visualizations</h2>
+            <p>Univariate and multivariate analysis visual plots generated from our historical meteorological database.</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr; gap: 3rem;">
+            <div class="glass-card" style="text-align: center;">
+                <h3 style="font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--accent);">Feature Distributions (Univariate Analysis)</h3>
+                <img src="/static/plots/distribution_plots.png" alt="Feature Distributions Grid" style="max-width: 100%; border-radius: 12px; border: 1px solid var(--glass-border);">
+            </div>
+            
+            <div class="glass-card" style="text-align: center;">
+                <h3 style="font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--accent);">Outlier Analysis (Box Plots)</h3>
+                <img src="/static/plots/box_plots.png" alt="Outlier Detection Box Plots" style="max-width: 100%; border-radius: 12px; border: 1px solid var(--glass-border);">
+            </div>
+            
+            <div class="glass-card" style="text-align: center;">
+                <h3 style="font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--accent);">Multivariate Feature Correlation Heatmap</h3>
+                <img src="/static/plots/correlation_heatmap.png" alt="Correlation Heatmap" style="max-width: 100%; border-radius: 12px; border: 1px solid var(--glass-border);">
+            </div>
+        </div>
+    </section>
+
+    <!-- About the Project -->
+    <section class="workflow-section" id="about">
+        <div class="section-header">
+            <h2>Workflow Stages</h2>
+            <p>From raw historical meteorological parameters to deployable disaster mitigation classifiers.</p>
+        </div>
+        
+        <div class="timeline" id="workflow">
+            <div class="timeline-item">
+                <span class="timeline-step">01</span>
+                <h3 class="timeline-title">Dataset</h3>
+                <p class="timeline-desc">Historical data containing rainfall levels, temperature, humidity, and atmospheric visibility parameters.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <span class="timeline-step">02</span>
+                <h3 class="timeline-title">Preprocessing</h3>
+                <p class="timeline-desc">Audit check of missing values, IQR capping outliers, mapping categories, and feature scaling via StandardScaler.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <span class="timeline-step">03</span>
+                <h3 class="timeline-title">Training</h3>
+                <p class="timeline-desc">Comparative testing across Decision Trees, Random Forest, KNN, and XGBoost classifiers.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <span class="timeline-step">04</span>
+                <h3 class="timeline-title">Model Selection</h3>
+                <p class="timeline-desc">Selecting our optimized XGBoost configuration delivering exactly 96.55% validation accuracy.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <span class="timeline-step">05</span>
+                <h3 class="timeline-title">Deployment</h3>
+                <p class="timeline-desc">Joblib serialized objects deployed on IBM Cloud scalable environment ready for real-time inference requests.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expandable Model Information Card -->
+    <section class="workflow-section">
+        <div class="expand-card" id="model-card">
+            <div class="expand-header">
+                <h3>🔍 Expand Selected Model Parameters (XGBoost)</h3>
+                <span id="expand-icon">▼</span>
+            </div>
+            <div class="expand-content" id="model-details">
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Our selected model is configured with optimized hyper-parameters for tabular weather inputs:</p>
+                <ul style="list-style-type: square; padding-left: 1.5rem; color: var(--text-secondary); line-height: 1.6;">
+                    <li><strong>Algorithm Type:</strong> Extreme Gradient Boosting (XGBClassifier)</li>
+                    <li><strong>Number of Estimators:</strong> 50 weak trees</li>
+                    <li><strong>Max Depth:</strong> 3 splits (combating overfitting)</li>
+                    <li><strong>Learning Rate:</strong> 0.1 step compression</li>
+                    <li><strong>Model serialization version:</strong> Joblib v1.5</li>
+                    <li><strong>Evaluation Metric:</strong> Logarithmic loss</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack Section -->
+    <section class="workflow-section" id="technology">
+        <div class="section-header">
+            <h2>Technology Stack</h2>
+            <p>Built with modern scientific computing frameworks co-operating with IBM Cloud infrastructure.</p>
+        </div>
+        
+        <div class="tech-grid">
+            <div class="tech-card">
+                <div class="tech-icon">🐍</div>
+                <div class="tech-name">Python</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">🌶️</div>
+                <div class="tech-name">Flask</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">📊</div>
+                <div class="tech-name">Scikit-Learn</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">⚡</div>
+                <div class="tech-name">XGBoost</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">🐼</div>
+                <div class="tech-name">Pandas</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">🔢</div>
+                <div class="tech-name">NumPy</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">☁️</div>
+                <div class="tech-name">IBM Cloud</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Rising Waters. Environmental Hazard Warning Platform. All rights reserved.</p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">▲</div>
+
+    <!-- Floating chatbot widget -->
+    <div class="chatbot-floating-btn" id="chat-btn">💬</div>
+    <div class="chatbot-panel" id="chat-panel">
+        <div class="chatbot-header">
+            <h3>AI Assistant Dashboard</h3>
+            <button class="chatbot-close" id="chat-close">×</button>
+        </div>
+        <div class="chatbot-messages" id="chat-msgs">
+            <div class="message bot">Hello! I am your AI weather advisor. You can ask me how to read meteorological values or what parameters indicate a flood risk.</div>
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" class="chatbot-input" id="chat-input" placeholder="Type a message...">
+            <button class="chatbot-send" id="chat-send">Send</button>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toast">Prediction Completed successfully.</div>
+
+    <script src="/static/main.js"></script>
+</body>
+</html>
