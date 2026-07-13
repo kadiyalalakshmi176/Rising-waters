@@ -1,0 +1,33 @@
+=========================================
+      Rising Waters Data Exploration     
+=========================================
+
+--- FIRST 5 RECORDS (head) ---
+   Annual Rainfall  Cloud Visibility  Seasonal Rainfall  Temperature  Humidity Cloud Cover     class
+0          2223.52              6.63            1462.21        26.38     52.51      Medium  No Flood
+1          1937.78              6.11            1238.79        24.21     95.62      Medium  No Flood
+2          2291.46              5.94            1521.09        22.17     62.49      Medium     Flood
+3          2685.36              8.53            1859.02        24.44     60.19         Low     Flood
+4          1894.63              7.64            1240.60        26.88     84.20      Medium  No Flood
+
+--- SHAPE ---
+Rows: 290, Columns: 7
+
+--- DATA INFO ---
+
+
+--- STATISTICAL SUMMARY (describe) ---
+       Annual Rainfall  Cloud Visibility  Seasonal Rainfall  Temperature    Humidity
+count       290.000000        290.000000         290.000000   290.000000  290.000000
+mean       1993.179819          6.959328        1298.271349    27.535948   75.359216
+std         437.602694          1.727568         285.606132     3.425261    8.971275
+min         796.522500          2.550000         513.513750    18.477500   51.680000
+25%        1682.182500          5.742500        1090.875000    25.295000   69.000000
+50%        2023.350000          6.970000        1321.025000    27.685000   75.380000
+75%        2272.622500          8.127500        1475.782500    29.840000   80.645000
+max        3158.282500         11.705000        2053.143750    35.840000   98.112500
+
+--- TARGET CLASS COUNTS ---
+class
+No Flood    207
+Flood        83
